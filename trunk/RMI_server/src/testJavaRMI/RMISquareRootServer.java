@@ -2,7 +2,9 @@ package testJavaRMI;
 
 import java.net.MalformedURLException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 
@@ -25,14 +27,10 @@ public class RMISquareRootServer extends UnicastRemoteObject implements ISquareR
 		try 
 		{
 			ISquareRoot server=new RMISquareRootServer();
-			Naming.rebind("//localhost/RMISquareRoot",server);
+			Naming.rebind("RMISquareRoot",server);
 			System.out.println("Il Server è pronto");
 		}
-		catch (RemoteException e)
-		{
-			e.printStackTrace();
-		}
-		catch (MalformedURLException e)
+		catch (RemoteException | MalformedURLException e)
 		{
 			e.printStackTrace();
 		}
