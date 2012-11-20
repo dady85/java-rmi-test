@@ -1,6 +1,7 @@
 package testJavaRMI;
 
 import java.net.MalformedURLException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -25,6 +26,7 @@ public class RMISquareRootServer extends UnicastRemoteObject implements ISquareR
 		{
 			ISquareRoot server=new RMISquareRootServer();
 			Naming.rebind("//localhost/RMISquareRoot",server);
+			System.out.println("Il Server è pronto");
 		}
 		catch (RemoteException e)
 		{
