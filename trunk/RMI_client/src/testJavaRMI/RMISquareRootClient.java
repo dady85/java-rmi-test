@@ -2,6 +2,7 @@ package testJavaRMI;
 
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.net.MalformedURLException;
 
@@ -12,6 +13,7 @@ public class RMISquareRootClient
 		int x=Integer.parseInt(args[0]);
 		try
 		{
+			System.setSecurityManager(new RMISecurityManager());
 			ISquareRoot squareServer=(ISquareRoot) Naming.lookup("rmi://localhost/RMISquareRoot");
 			double result=squareServer.calculateSquareRoot(x);
 			System.out.println(result);
